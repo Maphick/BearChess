@@ -15,5 +15,8 @@ abstract public class ChessPiece {
 
     // абстрактный метод canMoveToPosition(), возвращающий логическое (boolean) значение
     // и паринимающий в себя параметры ChessBoard chessBoard, int line, int column, int toLine, int toColumn;
-    canMoveToPosition()
+    public abstract boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn);
+
+    // абстрактный метод getSymbol(), возвращающий строку — тип фигуры.
+    public abstract String getSymbol();
 }
