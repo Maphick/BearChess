@@ -1,4 +1,4 @@
-// shaxmatnaja figura
+// абстрактный класс ChessPiece (шахматная фигура)
 abstract public class ChessPiece {
     // строковая переменная color — цвет
     String color;
