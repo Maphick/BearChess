@@ -13,12 +13,22 @@ public class Rook extends ChessPiece{
         return pos >= 0 && pos <= 7;
     }
 
+    public boolean isBusySameColor(ChessBoard chessBoard, int toLine, int toColumn)
+    {
+        ChessPiece piece  =   chessBoard.board[toLine][toColumn];
+        if (piece!=null) {
+            return piece.getColor().equals(getColor());
+        }
+        else return false;
+    }
+
     @Override
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
         check = false;
         boolean horizontalMove  = (toLine == line) && (toColumn!= column);
         boolean verticalMove = (toColumn == column) && (toLine != line);
-        return (horizontalMove || verticalMove) && checkPos(toLine) && checkPos(toColumn);
+        boolean canMoveToPosition = (horizontalMove || verticalMove) && checkPos(toLine) && checkPos(toColumn);
+        return  canMoveToPosition && !(isBusySameColor(chessBoard,toLine, toColumn));
     }
 
     @Override

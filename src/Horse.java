@@ -11,6 +11,16 @@ public class Horse extends ChessPiece{
     public boolean checkPos(int pos) {
         return pos >= 0 && pos <= 7;
     }
+
+    public boolean isBusySameColor(ChessBoard chessBoard, int toLine, int toColumn)
+    {
+        ChessPiece piece  =   chessBoard.board[toLine][toColumn];
+        if (piece!=null) {
+            return piece.getColor().equals(getColor());
+        }
+        else return false;
+    }
+
     @Override
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
         // I
@@ -26,7 +36,8 @@ public class Horse extends ChessPiece{
         boolean second_var_j = (toColumn == (column-2) || toColumn == (column+2));
         boolean second_var_i_j = second_var_i && second_var_j;
 
-        return (checkPos(toLine) && checkPos(toColumn) && ((first_var_i_j) || (second_var_i_j)) );
+        boolean canMoveToPosition = (checkPos(toLine) && checkPos(toColumn) && ((first_var_i_j) || (second_var_i_j)) );
+        return  canMoveToPosition && !(isBusySameColor(chessBoard,toLine, toColumn));
     }
 
     @Override

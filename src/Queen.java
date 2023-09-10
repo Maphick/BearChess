@@ -25,11 +25,22 @@ public class Queen extends ChessPiece{
         boolean verticalMove = (toColumn == column) && (toLine != line);
         return (horizontalMove || verticalMove) && checkPos(toLine) && checkPos(toColumn);
     }
+
+    public boolean isBusySameColor(ChessBoard chessBoard, int toLine, int toColumn)
+    {
+        ChessPiece piece  =   chessBoard.board[toLine][toColumn];
+        if (piece!=null) {
+            return piece.getColor().equals(getColor());
+        }
+        else return false;
+    }
+
     @Override
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
         boolean canMoveLikeRook =  canMoveLikeRook(chessBoard, line, column, toLine, toColumn);
         boolean canMoveLikBishop =  canMoveLikBishop(chessBoard, line, column, toLine, toColumn);
-        return canMoveLikeRook || canMoveLikBishop;
+        boolean canMoveToPosition = canMoveLikeRook || canMoveLikBishop;
+        return  canMoveToPosition && !(isBusySameColor(chessBoard,toLine, toColumn));
     }
 
     @Override

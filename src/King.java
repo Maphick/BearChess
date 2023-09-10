@@ -9,14 +9,25 @@ public class King extends ChessPiece{
         return color;
     }
 
+    public boolean isBusySameColor(ChessBoard chessBoard, int toLine, int toColumn)
+    {
+        ChessPiece piece  =   chessBoard.board[toLine][toColumn];
+        if (piece!=null) {
+            return piece.getColor().equals(getColor());
+        }
+        else return false;
+    }
+
     @Override
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
         check = false;
-        return (Math.abs(toLine-line) <= 1) && (Math.abs(toColumn-column)<=1)
+        boolean canMoveToPosition = (Math.abs(toLine-line) <= 1) && (Math.abs(toColumn-column)<=1)
                 && !((toLine==line)&&(toColumn==column))
                 &&checkPos(toLine)
                 &&checkPos(toColumn);
+        return  canMoveToPosition && !(isBusySameColor(chessBoard,toLine, toColumn));
     }
+
 
     public boolean isUnderAttack(ChessBoard board, int line, int column)
     {
