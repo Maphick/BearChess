@@ -31,7 +31,7 @@ public class Pawn extends ChessPiece{
     public boolean isBusy(ChessBoard chessBoard, int toLine, int toColumn)
     {
         ChessPiece piece  =   chessBoard.board[toLine][toColumn];
-        return  (piece==null);
+        return  (piece!=null);
     }
 
     public boolean isBusySameColor(ChessBoard chessBoard, int toLine, int toColumn)
