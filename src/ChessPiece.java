@@ -19,4 +19,9 @@ abstract public class ChessPiece {
 
 
     public abstract String getSymbol();
+
+    public boolean checkPos(int pos) {
+        return pos >= 0 && pos <= 7;
+    }
+
 }
